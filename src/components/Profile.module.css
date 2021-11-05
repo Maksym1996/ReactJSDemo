@@ -1,0 +1,17 @@
+.profile {
+    grid-area: profile;
+    background-color: lemonchiffon;
+  }
+  
+  .profile img {
+    height: 200px;
+    width: 1000px;
+  }
+
+  .item {
+      color: green;
+  }
+
+  .item.active {
+      color: gold;
+  }
