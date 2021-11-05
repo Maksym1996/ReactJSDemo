@@ -1,3 +1,4 @@
+import PostsSection from './PostsSection/PostsSection';
 import s from './Profile.module.css';
 
 const Profile = () => {
@@ -9,18 +10,7 @@ const Profile = () => {
             <div>
                 ava + description
             </div>
-            <div>
-                My posts
-            </div>
-            <div>
-                New post
-            </div>
-            <div className={s.item}>
-                post1
-            </div>
-            <div className={`${s.item} ${s.active}`}>
-                post2
-            </div>
+           <PostsSection />
         </div>
     );
 }
