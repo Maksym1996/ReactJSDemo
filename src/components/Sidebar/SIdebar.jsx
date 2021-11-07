@@ -1,24 +1,15 @@
-import { Link } from "react-router-dom";
+import NavLink from './../../util/NavLink/NavLink';
 import s from './Sidebar.module.css';
+import Sidebar_Item from './Sidebar_Item/Sidebar_Item';
 
 const Sidebar = (props) => {
     return (
         <nav className={s.sidebar}>
-            <div className={s.item}>
-                <Link to="/profile">Profile</Link>
-            </div>
-            <div className={s.item}>
-                <Link to="/dialogs">Dialogs</Link>
-            </div>
-            <div className={s.item}>
-                <Link to="/news">News</Link>
-            </div>
-            <div className={s.item}>
-                <Link to="/music">Music</Link>
-            </div>
-            <div className={s.item}>
-                <Link to="/settings">Settings</Link>
-            </div>
+            <Sidebar_Item link='/profile' text='Profile' />
+            <Sidebar_Item link='/dialogs' text='Dialogs' />
+            <Sidebar_Item link='/news' text='News' />
+            <Sidebar_Item link='/music' text='Music' />
+            <Sidebar_Item link='/settings' text='Settings' />
         </nav>
     );
 }
