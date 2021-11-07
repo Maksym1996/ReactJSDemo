@@ -1,32 +1,23 @@
+import { Link } from "react-router-dom";
 import s from './Sidebar.module.css';
 
-const Sidebar = () => {
+const Sidebar = (props) => {
     return (
         <nav className={s.sidebar}>
             <div className={s.item}>
-                <a>
-                    Profile
-                </a>
+                <Link to="/profile">Profile</Link>
             </div>
             <div className={s.item}>
-                <a>
-                    Messages
-                </a>
+                <Link to="/dialogs">Dialogs</Link>
             </div>
             <div className={s.item}>
-                <a>
-                    News
-                </a>
+                <Link to="/news">News</Link>
             </div>
             <div className={s.item}>
-                <a>
-                    Music
-                </a>
+                <Link to="/music">Music</Link>
             </div>
             <div className={s.item}>
-                <a>
-                    Settings
-                </a>
+                <Link to="/settings">Settings</Link>
             </div>
         </nav>
     );
