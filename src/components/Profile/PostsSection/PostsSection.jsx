@@ -1,16 +1,20 @@
 import Post from './Post/Post';
 import s from './PostsSection.module.css';
 
-const Posts = () => {
+const PostsSection = () => {
     return (
         <>
             My posts
+            <div>
+                <textarea></textarea>
+                <button>Add post</button>
+            </div>
             <div className={s.postsSection}>
-                <Post value = {{name: 'Post1'}}/>
-                <Post value = {{name: 'Post2'}}/>
+                <Post mes = 'Hi, evetyone!!' likes = '15'/>
+                <Post mes = 'Bye bye all' likes = '20'/>
             </div>
         </>
     );
 }
 
-export default Posts;
+export default PostsSection;
