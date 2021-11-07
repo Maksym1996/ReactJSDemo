@@ -1,7 +1,7 @@
 import Post from './Post/Post';
 import s from './PostsSection.module.css';
 
-const PostsSection = () => {
+const PostsSection = (props) => {
     return (
         <>
             My posts
