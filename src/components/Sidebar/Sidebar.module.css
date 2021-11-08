@@ -2,4 +2,13 @@
     grid-area: sidebar;
     background-color: greenyellow;
     padding: 20px;
-  }
+}
+
+.sidebar .item a {
+  color: white;
+  text-decoration: none;
+}
+
+.sidebar .item a.activeLink {
+  color: blue;
+}

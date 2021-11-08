@@ -1,6 +1,14 @@
-import NavLink from './../../util/NavLink/NavLink';
+import NavLink from '../NavLink/NavLink';
 import s from './Sidebar.module.css';
-import Sidebar_Item from './Sidebar_Item/Sidebar_Item';
+
+const Sidebar_Item = (props) => {
+
+    return (
+        <div className={s.item}>
+            <NavLink to={props.link} activeClassName={s.activeLink}>{props.text}</NavLink>
+        </div>
+    )
+}
 
 const Sidebar = (props) => {
     return (
