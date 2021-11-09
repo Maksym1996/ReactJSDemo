@@ -2,18 +2,28 @@ import Post from './Post/Post';
 import s from './PostsSection.module.css';
 
 const PostsSection = (props) => {
+
+    let postElements = props.postData
+        .map(el => <Post mes={el.message} likes={el.likes} />)
+
     return (
-        <>
-            My posts
-            <div>
-                <textarea></textarea>
-                <button>Add post</button>
+        <div className={s.postsSection}>
+            <h3>
+                My posts
+            </h3>
+
+            <div className={s.inputPostBlock}>
+                <div>
+                    <textarea></textarea>
+                </div>
+                <div>
+                    <button>Add post</button>
+                </div>
             </div>
-            <div className={s.postsSection}>
-                <Post mes = 'Hi, evetyone!!' likes = '15'/>
-                <Post mes = 'Bye bye all' likes = '20'/>
+            <div className={s.postsList}>
+                {postElements}
             </div>
-        </>
+        </div>
     );
 }
 

@@ -1,23 +1,8 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import NavLink from "../NavLink/NavLink";
 import s from './Dialogs.module.css';
-
-const DialogItem = (props) => {
-    return (
-        <div className={s.dialog}>
-            <NavLink to={props.link}>{props.name}</NavLink>
-        </div>
-    );
-}
-
-const Message = (props) => {
-    return (
-        <div className={s.message}>
-            {props.text}
-        </div>
-    );
-}
+import DialogItem from "./DialogItem/DialogItem";
+import Message from './Message/Message'
 
 const Dialogs = (props) => {
     const { message } = useParams();
@@ -28,18 +13,20 @@ const Dialogs = (props) => {
             </div>
         )
     }
+
+    let dialogElements = props.dialogData
+        .map(el => <DialogItem id={el.id} name={el.name} />)
+
+    let messageElements = props.messages
+        .map(el => <Message text={el.text} />)
+
     return (
         <div className={s.dialogs}>
             <div className={s.dialogItems}>
-                <DialogItem link='/dialogs/1' name='Andrey' />
-                <DialogItem link='/dialogs/2' name='Maksym' />
-                <DialogItem link='/dialogs/3' name='Vitalii' />
-                <DialogItem link='/dialogs/4' name='Oksana' />
+                {dialogElements}
             </div>
             <div className={s.messages}>
-                <Message text='  Hi, everyone!'/>
-                <Message text='What&#39;s wrong?'/>
-                <Message text='All ok!'/>
+                {messageElements}
             </div>
         </div>
     )
