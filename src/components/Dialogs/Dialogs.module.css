@@ -2,19 +2,3 @@
     display: grid;
     grid-template-columns: 2fr 10fr;
 }
-
-.dialogs .dialogItems {
-    padding: 10px;
-}
-
-.dialogItems .dialog {
-
-}
-
-.dialogs .messages{
-    padding: 10px;
-}
-
-.messages .message {
-
-}
