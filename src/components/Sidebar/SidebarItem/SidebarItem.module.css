@@ -1,0 +1,8 @@
+.sidebar_item a {
+  color: white;
+  text-decoration: none;
+}
+
+.sidebar_item a.activeLink {
+  color: blue;
+}
