@@ -2,7 +2,6 @@ import Post from './Post/Post';
 import s from './PostsSection.module.css';
 
 const PostsSection = (props) => {
-
     let postElements = props.postData
         .map(el => <Post mes={el.message} likes={el.likes} />)
 
