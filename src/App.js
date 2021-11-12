@@ -4,10 +4,11 @@ import Sidebar from './components/Sidebar/Sidebar';
 import Footer from './components/Footer/Footer';
 import Profile from './components/Profile/Profile';
 import Dialogs from './components/Dialogs/Dialogs';
-import { Route, BrowserRouter, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
+import { changeInput } from './redux/state';
 
 const App = (props) => {
   return (
@@ -25,7 +26,8 @@ const App = (props) => {
               <Route path=':message' element={<Dialogs />} />
             </Route>
             <Route path='/profile' element={<Profile
-              postData={props.state.profileComponent.postData} />} />
+              profileData={props.state.profileComponent} 
+              profileFunc={props.func.profileComponentFunc} />} />
             <Route path='/news' element={<News />} />
             <Route path='/music' element={<Music />} />
             <Route path='/settings' element={<Settings />} />
