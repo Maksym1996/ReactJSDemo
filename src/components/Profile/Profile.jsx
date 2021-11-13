@@ -3,14 +3,14 @@ import s from './Profile.module.css';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 
 const Profile = (props) => {
+    debugger;
     return (
         <div>
             <ProfileInfo />
             <PostsSection 
             postData={props.profileData.postData} 
             postMessage={props.profileData.postMessage}
-            addPost={props.profileFunc.addPost}
-            updatePost={props.profileFunc.updatePostText}/>
+            dispatch={props.dispatch}/>
         </div>
     );
 }

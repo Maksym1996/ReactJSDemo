@@ -9,12 +9,19 @@ const PostsSection = (props) => {
     let newPostElement = React.createRef();
 
     let addPost = () => {
-        props.addPost();
+        let action = {
+            type: 'ADD_POST'
+        }
+        props.dispatch(action);
     }
 
 
     let textAreaChangeHandler = (elem) => {
-        props.updatePost(elem.currentTarget.value);
+        let action = {
+            type: 'UPDATE_POST_MESSAGE',
+            message: elem.currentTarget.value
+        }
+        props.dispatch(action);
     }
 
     return (
