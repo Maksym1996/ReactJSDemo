@@ -8,32 +8,33 @@ import { Route, Routes } from 'react-router-dom';
 import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
-import { changeInput } from './redux/state';
 
 const App = (props) => {
   return (
-      <div className='app-wrapper'>
-        <Header />
-        <Sidebar
-          sidebarData={props.state.sidebarComponent.sidebarData} />
-        <Footer />
-        <div className='app-wrapper-content'>
-          <Routes>
-            <Route path='/dialogs' >
-              <Route path='' element={<Dialogs
-                dialogData={props.state.dialogComponent.dialogData}
-                messages={props.state.dialogComponent.messageData} />} />
-              <Route path=':message' element={<Dialogs />} />
-            </Route>
-            <Route path='/profile' element={<Profile
-              profileData={props.state.profileComponent} 
+    <div className='app-wrapper'>
+      <Header />
+      <Sidebar
+        sidebarData={props.state.sidebarComponent.sidebarData} />
+      <Footer />
+      <div className='app-wrapper-content'>
+        <Routes>
+          <Route path='/dialogs' >
+            <Route path='' element={<Dialogs
+              dialogData={props.state.dialogComponent.dialogData}
+              messages={props.state.dialogComponent.messageData}
+              currentMessage={props.state.dialogComponent.currentMessage}
               dispatch={props.dispatch} />} />
-            <Route path='/news' element={<News />} />
-            <Route path='/music' element={<Music />} />
-            <Route path='/settings' element={<Settings />} />
-          </Routes>
-        </div>
-      </div >
+            <Route path=':message' element={<Dialogs />} />
+          </Route>
+          <Route path='/profile' element={<Profile
+            profileData={props.state.profileComponent}
+            dispatch={props.dispatch} />} />
+          <Route path='/news' element={<News />} />
+          <Route path='/music' element={<Music />} />
+          <Route path='/settings' element={<Settings />} />
+        </Routes>
+      </div>
+    </div >
   );
 }
 

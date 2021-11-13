@@ -1,4 +1,5 @@
 import React from 'react';
+import { addPostActionCreator, updatePostMessageActionCreator } from '../../../redux/store';
 import Post from './Post/Post';
 import s from './PostsSection.module.css';
 
@@ -9,19 +10,13 @@ const PostsSection = (props) => {
     let newPostElement = React.createRef();
 
     let addPost = () => {
-        let action = {
-            type: 'ADD_POST'
-        }
-        props.dispatch(action);
+        props.dispatch(addPostActionCreator());
     }
 
-
     let textAreaChangeHandler = (elem) => {
-        let action = {
-            type: 'UPDATE_POST_MESSAGE',
-            message: elem.currentTarget.value
-        }
-        props.dispatch(action);
+        let postText = elem.currentTarget.value;
+        props.dispatch(updatePostMessageActionCreator(
+            { message: postText }));
     }
 
     return (
@@ -29,7 +24,6 @@ const PostsSection = (props) => {
             <h3>
                 My posts
             </h3>
-
             <div className={s.inputPostBlock}>
                 <div>
                     <textarea ref={newPostElement} value={props.postMessage} onChange={textAreaChangeHandler} placeholder='Enter your message...' />

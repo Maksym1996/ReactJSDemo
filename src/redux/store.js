@@ -1,3 +1,8 @@
+const ADD_POST = 'ADD_POST';
+const UPDATE_POST_MESSAGE = 'UPDATE_POST_MESSAGE';
+const ADD_DIALOG_MESSAGE = 'ADD_DIALOG_MESSAGE';
+const UPDATE_DIALOG_MESSAGE = 'UPDATE_DIALOG_MESSAGE';
+
 
 let store = {
     _state: {
@@ -10,9 +15,10 @@ let store = {
             ],
             messageData: [
                 { id: 1, text: 'Hi, everyone!' },
-                { id: 1, text: 'What\'s wrong?' },
-                { id: 1, text: 'All ok!' }
-            ]
+                { id: 2, text: 'What\'s wrong?' },
+                { id: 3, text: 'All ok!' }
+            ],
+            currentMessage: ''
         },
         profileComponent: {
             postData: [
@@ -42,16 +48,17 @@ let store = {
         this.rerenderTree = sub;
     },
 
-    _id: 3,
+    _postID: 3,
 
     _addPost() {
-        if (!this._state.profileComponent.postMessage) {
+        let text = this._state.profileComponent.postMessage;
+        if (!text) {
             alert('Please enter message');
             return;
         }
         let newPostObj = {
-            id: this.id++,
-            message: this._state.profileComponent.postMessage,
+            id: this._postID++,
+            message: text,
             likes: 0
         };
         this._state.profileComponent.postData.push(newPostObj);
@@ -64,16 +71,64 @@ let store = {
         this.rerenderTree(this._state);
     },
 
+    _dialogID: 4,
+
+    _addDialogMessage() {
+        let text = this._state.dialogComponent.currentMessage;
+        if(!text){
+            alert('Please enter message');
+            return;
+        }
+        let newObj = {
+            id: this._dialogID,
+            text: text
+        };
+        this._state.dialogComponent.messageData.push(newObj);
+        this._state.dialogComponent.currentMessage = '';
+        this.rerenderTree(this._state);
+    },
+
+    _updateDialogMessage(value) {
+        this._state.dialogComponent.currentMessage = value;
+        this.rerenderTree(this._state);
+    },
+
     dispatch(action) {
-        if (action.type === 'ADD_POST') {
-            this._addPost();
-        } else if (action.type === 'UPDATE_POST_MESSAGE') {
-            this._updatePostText(action.message);
+        switch(action.type){
+            case ADD_POST: return this._addPost();
+            case UPDATE_POST_MESSAGE : return this._updatePostText(action.payload.message); 
+            case ADD_DIALOG_MESSAGE: return this._addDialogMessage();
+            case UPDATE_DIALOG_MESSAGE: return this._updateDialogMessage(action.payload.message);
         }
     }
 
 
 };
+
+export const addPostActionCreator = () => {
+    return {
+        type: ADD_POST
+    }
+}
+export const updatePostMessageActionCreator = (payload) => {
+    return {
+        type: UPDATE_POST_MESSAGE,
+        payload: payload
+    }
+}
+
+export const addDialogMessageActionCreator = () => {
+    return {
+        type: ADD_DIALOG_MESSAGE
+    }
+}
+export const updateDialogMessageActionCreator = (payload) => {
+    console.log('upsdate', payload)
+    return {
+        type: UPDATE_DIALOG_MESSAGE,
+        payload: payload
+    }
+}
 
 
 
