@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import s from './Dialogs.module.css';
 import DialogItem from "./DialogItem/DialogItem";
 import Message from './Message/Message'
-import { addDialogMessageActionCreator, updateDialogMessageActionCreator, updatePostMessageActionCreator } from "../../redux/store";
+import { addDialogMessageActionCreator, updateDialogMessageActionCreator } from "../../redux/reducer/dialogReducer";
 
 const Dialogs = (props) => {
     const { message } = useParams();
