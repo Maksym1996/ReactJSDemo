@@ -1,10 +1,20 @@
+import Context from '../../Context';
 import Sidebar from './Sidebar';
 
 const SidebarContainer = (props) => {
-    let sidebarItems = props.store.getState().sidebarComponent.sidebarData;
+    
 
     return (
-        <Sidebar sidebarItems={sidebarItems} />
+        <Context.Consumer>
+        {
+            (store) => {
+                let sidebarItems = store.getState().sidebarComponent.sidebarData;
+               
+                return (<Sidebar sidebarItems={sidebarItems} />)
+            }
+        }
+        </Context.Consumer>
+        
     );
 }
 
