@@ -1,18 +1,14 @@
 import { ADD_POST, UPDATE_POST_MESSAGE } from "./actionConst";
 
-export const addPostActionCreator = () => {
-    return {
-        type: ADD_POST
-    }
-}
-export const updatePostMessageActionCreator = (payload) => {
-    return {
-        type: UPDATE_POST_MESSAGE,
-        payload: payload
-    }
-}
+let initialState = {
+    postData: [
+        { id: 1, message: 'Hi, evetyone!!', likes: 15 },
+        { id: 2, message: 'Bye bye all', likes: 20 }
+    ],
+    currentMessage: ''
+};
 
-const profileReducer = (state, action) => {
+export default (state = initialState, action) => {
     switch(action.type){
         case ADD_POST: 
             return addPost(state, action.payload);
@@ -21,11 +17,12 @@ const profileReducer = (state, action) => {
         default:
              return state;
     }
-} 
+};
+
 
 let postID = 3;
 const addPost = (state, action) => {
-    let text = state.profileComponent.postMessage;
+    let text = state.currentMessage;
     if (!text) {
         alert('Please enter message');
         return;
@@ -35,17 +32,27 @@ const addPost = (state, action) => {
         message: text,
         likes: 0
     };
-    state.profileComponent.postData.push(newPostObj);
-    state.profileComponent.postMessage = '';
+    state.postData.push(newPostObj);
+    state.currentMessage = '';
 
     return state;
 };
 
 const updatePostText = (state, payload) => {
-    state.profileComponent.postMessage = payload.message;
+    state.currentMessage = payload.message;
 
     return state;
 };
 
+export const addPostActionCreator = () => {
+    return {
+        type: ADD_POST
+    }
+};
 
-export default profileReducer;
+export const updatePostMessageActionCreator = (payload) => {
+    return {
+        type: UPDATE_POST_MESSAGE,
+        payload: payload
+    }
+};

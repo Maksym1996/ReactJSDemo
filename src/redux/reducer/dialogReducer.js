@@ -1,19 +1,21 @@
 import { ADD_DIALOG_MESSAGE, UPDATE_DIALOG_MESSAGE } from "./actionConst";
 
-export const addDialogMessageActionCreator = () => {
-    return {
-        type: ADD_DIALOG_MESSAGE
-    }
-}
-export const updateDialogMessageActionCreator = (payload) => {
-    console.log('upsdate', payload)
-    return {
-        type: UPDATE_DIALOG_MESSAGE,
-        payload: payload
-    }
+let initialState = {
+    dialogData: [
+        { id: 1, name: 'Andrey' },
+        { id: 2, name: 'Maksym' },
+        { id: 3, name: 'Vitalii' },
+        { id: 4, name: 'Oksana' }
+    ],
+    messageData: [
+        { id: 1, text: 'Hi, everyone!' },
+        { id: 2, text: 'What\'s wrong?' },
+        { id: 3, text: 'All ok!' }
+    ],
+    currentMessage: ''
 }
 
-const dialogReducer = (state, action) => {
+export default (state = initialState, action) => {
     switch(action.type){
         case ADD_DIALOG_MESSAGE: 
             return addDialogMessage(state, action.payload);
@@ -22,12 +24,13 @@ const dialogReducer = (state, action) => {
         default:
              return state;
     }
-} 
+};
+
 
 let dialogID = 4;
 
 const addDialogMessage = (state, payload) => {
-    let text = state.dialogComponent.currentMessage;
+    let text = state.currentMessage;
     if(!text){
         alert('Please enter message');
         return state;
@@ -36,16 +39,28 @@ const addDialogMessage = (state, payload) => {
         id: dialogID,
         text: text
     };
-    state.dialogComponent.messageData.push(newObj);
-    state.dialogComponent.currentMessage = '';
+    state.messageData.push(newObj);
+    state.currentMessage = '';
     
     return state;
 };
 
 const updateDialogMessage = (state, payload) => {
-    state.dialogComponent.currentMessage = payload.message;
+    state.currentMessage = payload.message;
 
     return state;
 };
 
-export default dialogReducer;
+export const addDialogMessageActionCreator = () => {
+    return {
+        type: ADD_DIALOG_MESSAGE
+    }
+};
+
+export const updateDialogMessageActionCreator = (payload) => {
+    console.log('upsdate', payload)
+    return {
+        type: UPDATE_DIALOG_MESSAGE,
+        payload: payload
+    }
+};
