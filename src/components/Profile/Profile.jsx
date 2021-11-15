@@ -7,9 +7,10 @@ const Profile = (props) => {
         <div>
             <ProfileInfo />
             <PostsSection
-                postData={props.profileData.postData}
-                postMessage={props.profileData.postMessage}
-                dispatch={props.dispatch} />
+                postData={props.postData}
+                currentMessage={props.currentMessage}
+                onAddPost={props.onAddPost}
+                onUpdatePostInput={props.onUpdatePostInput}  />
         </div>
     );
 }

@@ -10,13 +10,12 @@ const PostsSection = (props) => {
     let newPostElement = React.createRef();
 
     let addPost = () => {
-        props.dispatch(addPostActionCreator());
+        props.onAddPost();
     }
 
     let textAreaChangeHandler = (elem) => {
         let postText = elem.currentTarget.value;
-        props.dispatch(updatePostMessageActionCreator(
-            { message: postText }));
+        props.onUpdatePostInput(postText);
     }
 
     return (
@@ -26,7 +25,7 @@ const PostsSection = (props) => {
             </h3>
             <div className={s.inputPostBlock}>
                 <div>
-                    <textarea ref={newPostElement} value={props.postMessage} onChange={textAreaChangeHandler} placeholder='Enter your message...' />
+                    <textarea ref={newPostElement} value={props.currentMessage} onChange={textAreaChangeHandler} placeholder='Enter your message...' />
                 </div>
                 <div>
                     <button onClick={addPost}>Add post</button>
