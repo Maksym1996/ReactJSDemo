@@ -2,8 +2,7 @@ import s from './Sidebar.module.css';
 import SidebarItem from './SidebarItem/SidebarItem';
 
 const Sidebar = (props) => {
-
-    let sidebarItems = props.sidebarData
+    let sidebarItems = props.sidebarItems
         .map(item => <SidebarItem link={item.link} text={item.text} />)
 
     return (
