@@ -1,8 +1,6 @@
 import './App.css';
 import Header from './components/Header/Header'
-import Sidebar from './components/Sidebar/Sidebar';
 import Footer from './components/Footer/Footer';
-import Profile from './components/Profile/Profile';
 import Dialogs from './components/Dialogs/Dialogs';
 import { Route, Routes } from 'react-router-dom';
 import News from './components/News/News';

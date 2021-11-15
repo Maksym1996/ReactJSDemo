@@ -10,7 +10,7 @@ const Profile = (props) => {
                 postData={props.postData}
                 currentMessage={props.currentMessage}
                 onAddPost={props.onAddPost}
-                onUpdatePostInput={props.onUpdatePostInput}  />
+                onUpdatePostInput={props.onUpdatePostInput} />
         </div>
     );
 }
