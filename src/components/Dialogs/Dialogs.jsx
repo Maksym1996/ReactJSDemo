@@ -1,9 +1,8 @@
 import React from "react";
-import { useParams } from "react-router-dom";
 import s from './Dialogs.module.css';
 import DialogItem from "./DialogItem/DialogItem";
 import Message from './Message/Message'
-import { addDialogMessageActionCreator, updateDialogMessageActionCreator } from "../../redux/reducer/dialogReducer";
+import { useParams } from "react-router";
 
 const Dialogs = (props) => {
     const { message } = useParams();
@@ -15,23 +14,23 @@ const Dialogs = (props) => {
         )
     }
 
-    let dialogElements = props.dialogData
+    let dialogElements = props.usersData
         .map(el => <DialogItem id={el.id} name={el.name} />)
 
-    let messageElements = props.messages
+    let messageElements = props.messagesData
         .map(el => <Message text={el.text} />)
 
     let newMessageElement = React.createRef();
 
     let addMessage = () => {
-        props.dispatch(addDialogMessageActionCreator());
+        props.onAddMessage();
     }
 
     let updateMessage = (elem) => {
         let text = elem.currentTarget.value;
-        props.dispatch(updateDialogMessageActionCreator({message: text}))
+        props.onUpdateMessage(text);
     }
-    console.log(props)
+
     return (
         <div className={s.dialogs}>
             <div className={s.dialogItems}>
