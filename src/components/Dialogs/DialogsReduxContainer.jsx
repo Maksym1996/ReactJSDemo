@@ -1,5 +1,5 @@
 import React from "react";
-import { addDialogMessageActionCreator, updateDialogMessageActionCreator } from "../../redux/reducer/dialogReducer";
+import { addDialogMessage, updateDialogMessage } from "../../redux/actions/dialogActions";
 import Dialogs from "./Dialogs";
 
 const DialogsContainer = (props) => {
@@ -14,11 +14,11 @@ const DialogsContainer = (props) => {
     let currentMessage = dialogState.currentMessage;
 
     let addMessage = () => {
-        dialogDispatch(addDialogMessageActionCreator());
+        dialogDispatch(addDialogMessage());
     }
 
     let updateMessage = (value) => {
-        dialogDispatch(updateDialogMessageActionCreator({ message: value }))
+        dialogDispatch(updateDialogMessage({ message: value }))
     }
 
     return (

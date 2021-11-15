@@ -1,6 +1,6 @@
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import store from './redux/redux-store/store';
+import store from './redux/store';
 import renderTree from './renderTree';
 
 renderTree(store);

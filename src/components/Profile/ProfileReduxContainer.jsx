@@ -1,8 +1,8 @@
-import { addPostActionCreator, updatePostMessageActionCreator } from '../../redux/reducer/profileReducer';
+import { addPost, updatePostMessage } from '../../redux/actions/profileActions';
 import Profile from './Profile';
 
 const ProfileContainer = (props) => {
-    
+
     let profileState = props.store.getState().profileComponent;
     let profileDispatch = props.store.dispatch;
 
@@ -10,19 +10,19 @@ const ProfileContainer = (props) => {
     let currentMessage = profileState.currentMessage;
 
     let onAddPost = () => {
-        profileDispatch(addPostActionCreator());
+        profileDispatch(addPost());
     }
 
     let onUpdatePostInput = (value) => {
-        profileDispatch(updatePostMessageActionCreator({message: value}))
+        profileDispatch(updatePostMessage({ message: value }))
     }
 
     return (
         <Profile
-                postData={postData}
-                currentMessage={currentMessage}
-                onAddPost={onAddPost}
-                onUpdatePostInput={onUpdatePostInput} />
+            postData={postData}
+            currentMessage={currentMessage}
+            onAddPost={onAddPost}
+            onUpdatePostInput={onUpdatePostInput} />
     );
 }
 
