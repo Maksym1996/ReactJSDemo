@@ -1,4 +1,4 @@
-import { ADD_DIALOG_MESSAGE, UPDATE_DIALOG_MESSAGE } from "./actionConst";
+import { ADD_DIALOG_MESSAGE, UPDATE_DIALOG_MESSAGE } from "../actions/actionConst";
 
 let initialState = {
     dialogData: [
@@ -16,13 +16,13 @@ let initialState = {
 }
 
 export default (state = initialState, action) => {
-    switch(action.type){
-        case ADD_DIALOG_MESSAGE: 
+    switch (action.type) {
+        case ADD_DIALOG_MESSAGE:
             return addDialogMessage(state, action.payload);
-        case UPDATE_DIALOG_MESSAGE: 
-            return updateDialogMessage(state, action.payload); 
+        case UPDATE_DIALOG_MESSAGE:
+            return updateDialogMessage(state, action.payload);
         default:
-             return state;
+            return state;
     }
 };
 
@@ -31,7 +31,7 @@ let dialogID = 4;
 
 const addDialogMessage = (state, payload) => {
     let text = state.currentMessage;
-    if(!text){
+    if (!text) {
         alert('Please enter message');
         return state;
     }
@@ -41,7 +41,7 @@ const addDialogMessage = (state, payload) => {
     };
     state.messageData.push(newObj);
     state.currentMessage = '';
-    
+
     return state;
 };
 
@@ -49,18 +49,4 @@ const updateDialogMessage = (state, payload) => {
     state.currentMessage = payload.message;
 
     return state;
-};
-
-export const addDialogMessageActionCreator = () => {
-    return {
-        type: ADD_DIALOG_MESSAGE
-    }
-};
-
-export const updateDialogMessageActionCreator = (payload) => {
-    console.log('upsdate', payload)
-    return {
-        type: UPDATE_DIALOG_MESSAGE,
-        payload: payload
-    }
 };
