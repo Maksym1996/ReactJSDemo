@@ -1,40 +1,28 @@
-import Context from '../../Context';
 import { addPost, updatePostMessage } from '../../redux/actions/profileActions';
 import Profile from './Profile';
+import { connect } from 'react-redux';
 
-const ProfileContainer = (props) => {
-
-   
-
-    return (
-        <Context.Consumer>
-            {
-                (store) => {
-                    let profileState = store.getState().profileComponent;
-                    let profileDispatch = store.dispatch;
-                
-                    let postData = profileState.postData;
-                    let currentMessage = profileState.currentMessage;
-                
-                    let onAddPost = () => {
-                        profileDispatch(addPost());
-                    }
-                
-                    let onUpdatePostInput = (value) => {
-                        profileDispatch(updatePostMessage({ message: value }))
-                    }
-                    return (
-                        <Profile
-                            postData={postData}
-                            currentMessage={currentMessage}
-                            onAddPost={onAddPost}
-                            onUpdatePostInput={onUpdatePostInput} />
-                    )
-                }
-            }
-        </Context.Consumer>
-        
-    );
+let mapStateToProps = (state) => {
+    let profileState = state.profileComponent;
+    return { 
+        postData: profileState.postData,
+        currentMessage: profileState.currentMessage
+    }
 }
 
-export default ProfileContainer;
+let mapDispatchToProps = (dispatch) => {
+
+    return {
+        onAddPost: () => {
+            dispatch(addPost());
+        },
+        onUpdatePostInput: (value) => {
+            dispatch(updatePostMessage({ message: value }))
+        }
+    }
+
+}
+
+const ProfileReduxContainer = connect(mapStateToProps, mapDispatchToProps)(Profile);
+
+export default ProfileReduxContainer;

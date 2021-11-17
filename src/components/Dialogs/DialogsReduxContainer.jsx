@@ -1,45 +1,27 @@
-import React from "react";
-import Context from "../../Context";
+import { connect } from 'react-redux';
 import { addDialogMessage, updateDialogMessage } from "../../redux/actions/dialogActions";
 import Dialogs from "./Dialogs";
 
-const DialogsContainer = (props) => {
-
-   
-
-    return (
-        <Context.Consumer>
-            {
-                (store) => {
-                    let dialogState = store.getState().dialogComponent;
-                    let dialogDispatch = store.dispatch;
-
-                    let usersData = dialogState.dialogData;
-
-                    let messageData = dialogState.messageData;
-
-                    let currentMessage = dialogState.currentMessage;
-
-                    let addMessage = () => {
-                        dialogDispatch(addDialogMessage());
-                    }
-
-                    let updateMessage = (value) => {
-                        dialogDispatch(updateDialogMessage({ message: value }))
-                    }
-                    return (
-                        <Dialogs usersData={usersData}
-                            messagesData={messageData}
-                            currentMessage={currentMessage}
-                            onAddMessage={addMessage}
-                            onUpdateMessage={updateMessage}
-                        />
-                    )
-                }
-            }
-        </Context.Consumer>
-       
-    )
+let mapStateToProps = (state) => {
+    let dialogState = state.dialogComponent;
+    return {
+        usersData: dialogState.dialogData,
+        messagesData: dialogState.messageData,
+        currentMessage: dialogState.currentMessage
+    }
 }
 
-export default DialogsContainer;
+let mapDispatchToProps = (dispatch) => {
+    return {
+        onAddMessage: () => {
+            dispatch(addDialogMessage());
+        },
+        onUpdateMessage: (value) => {
+            dispatch(updateDialogMessage({ message: value }))
+        }
+    }
+}
+
+const DialogsReduxContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
+
+export default DialogsReduxContainer;
