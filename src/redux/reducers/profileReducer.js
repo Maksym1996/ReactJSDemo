@@ -20,26 +20,29 @@ export default (state = initialState, action) => {
 };
 
 
-let postID = 3;
 const addPost = (state, action) => {
     let text = state.currentMessage;
+    let newID = state.postData.length + 1;
     if (!text) {
         alert('Please enter message');
-        return;
+        return state;
     }
-    let newPostObj = {
-        id: postID++,
-        message: text,
-        likes: 0
-    };
-    state.postData.push(newPostObj);
-    state.currentMessage = '';
-
-    return state;
+    return {
+        ...state,
+        postData: [
+            ...state.postData,
+            {
+                id: newID,
+                message: state.currentMessage,
+                likes: newID
+            }],
+        currentMessage: ''
+    }
 };
 
 const updatePostText = (state, payload) => {
-    state.currentMessage = payload.message;
-
-    return state;
+    return {
+        ...state,
+        currentMessage: payload.message
+    }
 };

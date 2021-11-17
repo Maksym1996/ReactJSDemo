@@ -26,27 +26,27 @@ export default (state = initialState, action) => {
     }
 };
 
-
-let dialogID = 4;
-
 const addDialogMessage = (state, payload) => {
     let text = state.currentMessage;
     if (!text) {
         alert('Please enter message');
         return state;
     }
-    let newObj = {
-        id: dialogID,
-        text: text
-    };
-    state.messageData.push(newObj);
-    state.currentMessage = '';
-
-    return state;
+    return {
+        ...state,
+        messageData: [
+            ...state.messageData,
+            {
+                id: state.messageData.length + 1,
+                text: state.currentMessage
+            }],
+        currentMessage: ''
+    }
 };
 
 const updateDialogMessage = (state, payload) => {
-    state.currentMessage = payload.message;
-
-    return state;
+    return {
+        ...state,
+        currentMessage: payload.message
+    }
 };
