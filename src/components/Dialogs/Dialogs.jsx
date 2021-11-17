@@ -15,10 +15,10 @@ const Dialogs = (props) => {
     }
 
     let dialogElements = props.usersData
-        .map(el => <DialogItem id={el.id} name={el.name} />)
+        .map(el => <DialogItem key={el.id} id={el.id} name={el.name} />)
 
     let messageElements = props.messagesData
-        .map(el => <Message text={el.text} />)
+        .map(el => <Message key={el.id} text={el.text} />)
 
     let newMessageElement = React.createRef();
 

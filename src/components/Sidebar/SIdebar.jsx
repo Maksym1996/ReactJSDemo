@@ -3,7 +3,7 @@ import SidebarItem from './SidebarItem/SidebarItem';
 
 const Sidebar = (props) => {
     let sidebarItems = props.sidebarItems
-        .map(item => <SidebarItem link={item.link} text={item.text} />)
+        .map(item => <SidebarItem key={item.link} link={item.link} text={item.text} />)
 
     return (
         <nav className={s.sidebar}>

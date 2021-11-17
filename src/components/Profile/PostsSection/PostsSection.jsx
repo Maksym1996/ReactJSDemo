@@ -4,7 +4,7 @@ import s from './PostsSection.module.css';
 
 const PostsSection = (props) => {
     let postElements = props.postData
-        .map(el => <Post mes={el.message} likes={el.likes} />)
+        .map(el => <Post key={el.id} mes={el.message} likes={el.likes} />)
 
     let newPostElement = React.createRef();
 
