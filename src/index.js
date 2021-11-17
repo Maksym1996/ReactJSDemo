@@ -5,8 +5,4 @@ import renderTree from './renderTree';
 
 renderTree(store);
 
-store.subscribe(() => {
-    renderTree(store);
-});
-
 reportWebVitals();
