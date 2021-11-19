@@ -15,7 +15,7 @@ let initialState = {
     currentMessage: ''
 }
 
-export default (state = initialState, action) => {
+const dialogReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_DIALOG_MESSAGE:
             return addDialogMessage(state, action.payload);
@@ -25,6 +25,8 @@ export default (state = initialState, action) => {
             return state;
     }
 };
+
+export default dialogReducer;
 
 const addDialogMessage = (state, payload) => {
     let text = state.currentMessage;

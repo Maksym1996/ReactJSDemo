@@ -7,7 +7,7 @@ const User = (props) => {
     return (
         <div>
             <div className={styles.userPhoto}>
-                <img src={user.photos.small ? user.photos.small : userPhoto} />
+                <img src={user.photos.small ? user.photos.small : userPhoto} alt='Avatar'/>
             </div>
             <div>
                 {user.name}

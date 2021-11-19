@@ -14,7 +14,7 @@ let initialState = {
     users: []
 };
 
-export default (state = initialState, action) => {
+const userReduser = (state = initialState, action) => {
     switch (action.type) {
         case FOLLOW:
             return {
@@ -45,4 +45,6 @@ export default (state = initialState, action) => {
             return state;
     }
 };
+
+export default userReduser;
 

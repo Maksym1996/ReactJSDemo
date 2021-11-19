@@ -8,7 +8,7 @@ let initialState = {
     currentMessage: ''
 };
 
-export default (state = initialState, action) => {
+const profileReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_POST:
             return addPost(state, action.payload);
@@ -18,6 +18,8 @@ export default (state = initialState, action) => {
             return state;
     }
 };
+
+export default profileReducer;
 
 
 const addPost = (state, action) => {

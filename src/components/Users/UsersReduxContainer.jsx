@@ -16,7 +16,6 @@ let mapDispatchToProps = (dispatch) => {
         setUsers: (users) => dispatch(setUsers(users))
     }
 }
-
 const UsersReduxContainer = connect(mapStateToProps, mapDispatchToProps)(Users);
 
 export default UsersReduxContainer;
