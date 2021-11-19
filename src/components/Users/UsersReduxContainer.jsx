@@ -5,13 +5,13 @@ import Users from './Users';
 
 let mapStateToProps = (state) => {
     return {
-        users: state.usersComponent.usersData
+        users: state.usersComponent.users
     }
 }
 
 let mapDispatchToProps = (dispatch) => {
     return {
-        follow: (userId) => {dispatch(follow(userId))},
+        follow: (userId) => dispatch(follow(userId)),
         unfollow: (userId) => dispatch(unfollow(userId)),
         setUsers: (users) => dispatch(setUsers(users))
     }
