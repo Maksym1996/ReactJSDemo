@@ -1,24 +1,30 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import { follow, setCurrentPage, setTotalUsersCount, setUsers, unfollow } from '../../redux/actions/userAction';
+import { follow, setCurrentPage, setLoading, setTotalUsersCount, setUsers, unfollow } from '../../redux/actions/userAction';
 import * as axios from 'axios';
 import Users from './Users';
 
 class UsersContainer extends Component {
 
     componentDidMount() {
+        this.props.setLoading(true);
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
             .then(response => {
+                this.props.setLoading(false);
                 this.props.setUsers(response.data.items);
                 this.props.setTotalUsersCount(response.data.totalCount );
+                
             })
     }
 
     onChangeCurrentPage = (pageNumber) =>{
         this.props.setCurrentPage(pageNumber);
+        this.props.setLoading(true);
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
             .then(response => {
+                this.props.setLoading(false);
                 this.props.setUsers(response.data.items)
+              
             })
     }
 
@@ -29,6 +35,7 @@ class UsersContainer extends Component {
                     follow={this.props.follow}
                     unfollow={this.props.unfollow}
                     users={this.props.users}
+                    isLoading={this.props.isLoading}
                     onChangeCurrentPage={this.onChangeCurrentPage}/>
         
     }
@@ -39,7 +46,8 @@ let mapStateToProps = (state) => {
         users: state.usersComponent.users,
         currentPage: state.usersComponent.currentPage,
         pageSize: state.usersComponent.pageSize,
-        totalUsers: state.usersComponent.totalUsers
+        totalUsers: state.usersComponent.totalUsers,
+        isLoading: state.usersComponent.isLoading
     }
 }
 
@@ -49,7 +57,8 @@ let mapDispatchToProps = (dispatch) => {
         unfollow: (userId) => dispatch(unfollow(userId)),
         setUsers: (users) => dispatch(setUsers(users)),
         setCurrentPage: (currentPage) => dispatch(setCurrentPage(currentPage)),
-        setTotalUsersCount: (usersCount) => dispatch(setTotalUsersCount(usersCount))
+        setTotalUsersCount: (usersCount) => dispatch(setTotalUsersCount(usersCount)),
+        setLoading: (isLoading) => dispatch(setLoading(isLoading))
     }
 }
 

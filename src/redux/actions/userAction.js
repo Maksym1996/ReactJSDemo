@@ -1,4 +1,4 @@
-import { FOLLOW, UNFOLLOW, SET_USERS, SET_CURRENT_PAGE, SET_USERS_TOTAL_COUNT } from "./actionConst";
+import { FOLLOW, UNFOLLOW, SET_USERS, SET_CURRENT_PAGE, SET_USERS_TOTAL_COUNT, SET_LOADING } from "./actionConst";
 
 export const follow = (userId) => {
     return {
@@ -10,21 +10,21 @@ export const follow = (userId) => {
 export const unfollow = (userId) => {
     return {
         type: UNFOLLOW,
-        userId: userId
+        userId
     }
 }
 
 export const setUsers = (users) => {
     return {
         type: SET_USERS,
-        users: users
+        users
     }
 }
 
 export const setCurrentPage = (currentPage) => {
     return {
         type: SET_CURRENT_PAGE,
-        currentPage: currentPage
+        currentPage
     }
 }
 
@@ -32,5 +32,12 @@ export const setTotalUsersCount = (usersCount) => {
     return {
         type: SET_USERS_TOTAL_COUNT,
         totalUsersCount: usersCount
+    }
+}
+
+export const setLoading = (isLoading) => {
+    return {
+        type: SET_LOADING,
+        isLoading
     }
 }

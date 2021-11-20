@@ -7,3 +7,4 @@ export const UNFOLLOW = 'UNFOLLOW';
 export const SET_USERS = 'SET_USERS';
 export const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 export const SET_USERS_TOTAL_COUNT = 'SET_USERS_TOTAL_COUNT';
+export const SET_LOADING = 'SET_LOADING';
