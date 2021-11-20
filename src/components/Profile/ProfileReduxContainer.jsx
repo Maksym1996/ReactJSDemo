@@ -1,4 +1,4 @@
-import { addPost, updatePostMessage } from '../../redux/actions/profileActions';
+import { onAddPost, onUpdatePostInput } from '../../redux/actions/profileActions';
 import Profile from './Profile';
 import { connect } from 'react-redux';
 
@@ -10,17 +10,8 @@ let mapStateToProps = (state) => {
     }
 }
 
-let mapDispatchToProps = (dispatch) => {
-
-    return {
-        onAddPost: () => {
-            dispatch(addPost());
-        },
-        onUpdatePostInput: (value) => {
-            dispatch(updatePostMessage({ message: value }))
-        }
-    }
-
+let mapDispatchToProps = {
+    onAddPost, onUpdatePostInput
 }
 
 const ProfileReduxContainer = connect(mapStateToProps, mapDispatchToProps)(Profile);

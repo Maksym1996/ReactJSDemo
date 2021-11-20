@@ -7,10 +7,7 @@ let mapStateToProps = (state) => {
     }
 }
 
-let mapDispatchToProps = (dispatch) => {
-    return {
-
-    }
+let mapDispatchToProps = {
 }
 
 const SidebarReduxContainer = connect(mapStateToProps, mapDispatchToProps)(Sidebar);
