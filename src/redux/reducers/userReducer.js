@@ -1,4 +1,4 @@
-import { FOLLOW, UNFOLLOW, SET_USERS } from "../actions/actionConst";
+import { FOLLOW, UNFOLLOW, SET_USERS, SET_CURRENT_PAGE, SET_USERS_TOTAL_COUNT } from "../actions/actionConst";
 
 let initialState = {
 /*     usersData: [
@@ -11,7 +11,10 @@ let initialState = {
         { id: 4, follow: false, name: 'Vizimir', location: {city: 'Poznan', country: 'Polska'}, 
         photoLink: 'https://cdnn21.img.ria.ru/images/148825/88/1488258802_0:0:3072:1728_1920x0_80_0_0_bc61ae87b60794fd200143ee80a547f8.jpg' },
     ] */
-    users: []
+    users: [],
+    pageSize: 10,
+    totalUsers: 0,
+    currentPage: 1
 };
 
 const userReduser = (state = initialState, action) => {
@@ -39,7 +42,17 @@ const userReduser = (state = initialState, action) => {
         case SET_USERS:
             return {
                 ...state,
-                users: [...state.users, ...action.users]
+                users: action.users
+            }
+        case SET_CURRENT_PAGE:
+            return {
+                ...state,
+                currentPage: action.currentPage
+            }
+        case SET_USERS_TOTAL_COUNT:
+            return {
+                ...state,
+                totalUsers: action.totalUsersCount
             }
         default:
             return state;
