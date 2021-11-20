@@ -9,7 +9,7 @@ import Settings from './components/Settings/Settings';
 import SidebarReduxContainer from './components/Sidebar/SidebarReduxContainer';
 import DialogsReduxContainer from './components/Dialogs/DialogsReduxContainer';
 import ProfileReduxContainer from './components/Profile/ProfileReduxContainer';
-import UsersReduxContainer from './components/Users/UsersReduxContainer';
+import UsersContainer from './components/Users/UsersContainer';
 
 const App = (props) => {
   return (
@@ -27,7 +27,7 @@ const App = (props) => {
           <Route path='/news' element={<News />} />
           <Route path='/music' element={<Music />} />
           <Route path='/settings' element={<Settings />} />
-          <Route path='/users' element={<UsersReduxContainer />} />
+          <Route path='/users' element={<UsersContainer />} />
   
         </Routes>
       </div>
