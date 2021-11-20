@@ -11,9 +11,9 @@ let initialState = {
 const profileReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_POST:
-            return addPost(state, action.payload);
+            return addPost(state);
         case UPDATE_POST_MESSAGE:
-            return updatePostText(state, action.payload);
+            return updatePostText(state, action.message);
         default:
             return state;
     }
@@ -22,7 +22,7 @@ const profileReducer = (state = initialState, action) => {
 export default profileReducer;
 
 
-const addPost = (state, action) => {
+const addPost = (state) => {
     let text = state.currentMessage;
     let newID = state.postData.length + 1;
     if (!text) {
@@ -42,9 +42,9 @@ const addPost = (state, action) => {
     }
 };
 
-const updatePostText = (state, payload) => {
+const updatePostText = (state, message) => {
     return {
         ...state,
-        currentMessage: payload.message
+        currentMessage: message
     }
 };

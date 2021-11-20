@@ -18,9 +18,9 @@ let initialState = {
 const dialogReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_DIALOG_MESSAGE:
-            return addDialogMessage(state, action.payload);
+            return addDialogMessage(state);
         case UPDATE_DIALOG_MESSAGE:
-            return updateDialogMessage(state, action.payload);
+            return updateDialogMessage(state, action.message);
         default:
             return state;
     }
@@ -28,7 +28,7 @@ const dialogReducer = (state = initialState, action) => {
 
 export default dialogReducer;
 
-const addDialogMessage = (state, payload) => {
+const addDialogMessage = (state) => {
     let text = state.currentMessage;
     if (!text) {
         alert('Please enter message');
@@ -46,9 +46,9 @@ const addDialogMessage = (state, payload) => {
     }
 };
 
-const updateDialogMessage = (state, payload) => {
+const updateDialogMessage = (state, message) => {
     return {
         ...state,
-        currentMessage: payload.message
+        currentMessage: message
     }
 };
