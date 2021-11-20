@@ -10,6 +10,6 @@ export const updateDialogMessage = (payload) => {
     console.log('upsdate', payload)
     return {
         type: UPDATE_DIALOG_MESSAGE,
-        payload: payload
+        payload
     }
 };

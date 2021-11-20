@@ -9,6 +9,6 @@ export const addPost = () => {
 export const updatePostMessage = (payload) => {
     return {
         type: UPDATE_POST_MESSAGE,
-        payload: payload
+        payload
     }
 };
