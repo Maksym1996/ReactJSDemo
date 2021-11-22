@@ -2,18 +2,8 @@ import React from "react";
 import s from './Dialogs.module.css';
 import DialogItem from "./DialogItem/DialogItem";
 import Message from './Message/Message'
-import { useParams } from "react-router";
 
 const Dialogs = (props) => {
-    const { message } = useParams();
-    if (!!message) {
-        return (
-            <div>
-                {message}
-            </div>
-        )
-    }
-
     let dialogElements = props.usersData
         .map(el => <DialogItem key={el.id} id={el.id} name={el.name} />)
 

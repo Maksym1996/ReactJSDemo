@@ -6,3 +6,9 @@
 .descriptionBlock {
   padding: 10px;
 }
+
+.lookAJob img {
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
+}
