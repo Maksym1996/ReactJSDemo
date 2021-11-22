@@ -4,29 +4,26 @@ import { connect } from 'react-redux';
 import React, { useEffect } from 'react';
 import Preload from '../Users/Preload/Preload';
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
-class ProfileReduxContainer extends React.Component {
+const ProfileReduxContainer = (props) => {
 
-    componentDidMount() {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/2`)
-            .then(response => this.props.setDisplayingProfile(response.data))
+    let { userId } = useParams();
+
+    useEffect( () => {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
+            .then(response => props.setDisplayingProfile(response.data))
+    })
+
+    if (!props.profile) {
+        return <Preload />
     }
-
-
-
-    render() {
-        if (!this.props.profile) {
-            return <Preload />
-        }
-        return (
-            <Profile {...this.props} />
-        )
-    }
+    return (
+        <Profile {...props} />
+    )
 }
 
-
 let mapStateToProps = (state) => {
-    debugger;
     let profileState = state.profileComponent;
     return {
         postData: profileState.postData,
