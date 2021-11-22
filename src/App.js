@@ -9,6 +9,7 @@ import SidebarReduxContainer from './components/Sidebar/SidebarReduxContainer';
 import DialogsReduxContainer from './components/Dialogs/DialogsReduxContainer';
 import ProfileReduxContainer from './components/Profile/ProfileReduxContainer';
 import UsersContainer from './components/Users/UsersContainer';
+import Dialogs from './components/Dialogs/Dialogs';
 
 const App = (props) => {
   return (
@@ -20,6 +21,7 @@ const App = (props) => {
         <Routes>
           <Route path='/dialogs' >
             <Route path='' element={<DialogsReduxContainer />} />
+            <Route path=':message' element={<Dialogs />} />
           </Route>
           <Route path='/profile'>
             <Route path='' element={<ProfileReduxContainer />} />
