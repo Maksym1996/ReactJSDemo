@@ -10,6 +10,10 @@ const ProfileReduxContainer = (props) => {
 
     let { userId } = useParams();
 
+    if(!userId) {
+        userId = 2;
+    }
+
     useEffect( () => {
         axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
             .then(response => props.setDisplayingProfile(response.data))
