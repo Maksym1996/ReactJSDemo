@@ -1,8 +1,10 @@
 import { SET_USER_DATA } from "./actionConst"
 
-let setUserData = (data) => {
+export const setUserData = (userId, email, login) => {
     return {
         type: SET_USER_DATA,
-        data
+        data: {
+            userId, email, login
+        }
     }
 }

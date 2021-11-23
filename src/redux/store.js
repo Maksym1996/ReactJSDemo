@@ -1,4 +1,5 @@
 import { combineReducers, createStore } from 'redux';
+import authReducer from './reducers/authReducer';
 import dialogReducer from './reducers/dialogReducer';
 import profileReducer from './reducers/profileReducer';
 import sidebarReducer from './reducers/sidebarReducer';
@@ -8,7 +9,8 @@ let rootReducer = combineReducers({
     profileComponent: profileReducer,
     dialogComponent: dialogReducer,
     sidebarComponent: sidebarReducer,
-    usersComponent: userReducer
+    usersComponent: userReducer,
+    auth: authReducer
 })
 
 let store = createStore(rootReducer);

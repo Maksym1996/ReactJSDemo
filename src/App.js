@@ -1,5 +1,4 @@
 import './App.css';
-import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer';
 import { Route, Routes } from 'react-router-dom';
 import News from './components/News/News';
@@ -10,11 +9,12 @@ import DialogsReduxContainer from './components/Dialogs/DialogsReduxContainer';
 import ProfileReduxContainer from './components/Profile/ProfileReduxContainer';
 import UsersContainer from './components/Users/UsersContainer';
 import Dialogs from './components/Dialogs/Dialogs';
+import HeaderReduxContainer from './components/Header/HeaderReduxContainer';
 
 const App = (props) => {
   return (
     <div className='app-wrapper'>
-      <Header />
+      <HeaderReduxContainer />
       <SidebarReduxContainer />
       <Footer />
       <div className='app-wrapper-content'>

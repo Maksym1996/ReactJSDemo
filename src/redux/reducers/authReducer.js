@@ -8,7 +8,7 @@ let initState = {
 }
 
 const authReducer = (state = initState, action) => {
-    switch(action.type) {
+    switch (action.type) {
         case SET_USER_DATA:
             return setUserData(state, action.data)
         default:
