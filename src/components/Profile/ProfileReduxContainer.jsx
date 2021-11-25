@@ -3,8 +3,8 @@ import Profile from './Profile';
 import { connect } from 'react-redux';
 import React, { useEffect } from 'react';
 import Preload from '../Users/Preload/Preload';
-import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import profileAPI from '../../api/profileAPI';
 
 const ProfileReduxContainer = (props) => {
 
@@ -15,8 +15,8 @@ const ProfileReduxContainer = (props) => {
     }
 
     useEffect( () => {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
-            .then(response => props.setDisplayingProfile(response.data))
+        profileAPI.getProfile(userId)
+            .then(data => props.setDisplayingProfile(data))
     })
 
     if (!props.profile) {
