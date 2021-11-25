@@ -42,9 +42,10 @@ export const setLoading = (isLoading) => {
     }
 }
 
-export const setFollowingInProgress = (isFollowingInProgress) => {
+export const setFollowingInProgress = (isFollowingInProgress, userId) => {
     return {
         type : SET_FOLLOWING_IN_PROGRESS,
-        isFollowingInProgress
+        isFollowingInProgress,
+        userId
     }
 }

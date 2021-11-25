@@ -21,7 +21,7 @@ let Users = (props) => {
                         user={u}
                         follow={props.follow}
                         unfollow={props.unfollow}
-                        isFollowingInProgress={props.isFollowingInProgress}
+                        followingInProgress={props.followingInProgress}
                         setFollowingInProgress={props.setFollowingInProgress}
                     />)}
             </div>

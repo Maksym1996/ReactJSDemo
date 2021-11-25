@@ -37,7 +37,7 @@ class UsersContainer extends Component {
                     users={this.props.users}
                     isLoading={this.props.isLoading}
                     onChangeCurrentPage={this.onChangeCurrentPage}
-                    isFollowingInProgress={this.props.isFollowingInProgress}
+                    followingInProgress={this.props.followingInProgress}
                     setFollowingInProgress={this.props.setFollowingInProgress}/>
         
     }
@@ -50,7 +50,7 @@ let mapStateToProps = (state) => {
         pageSize: state.usersComponent.pageSize,
         totalUsers: state.usersComponent.totalUsers,
         isLoading: state.usersComponent.isLoading,
-        isFollowingInProgress: state.usersComponent.isFollowingInProgress
+        followingInProgress: state.usersComponent.followingInProgress
     }
 }
 
