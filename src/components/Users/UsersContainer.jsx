@@ -8,7 +8,9 @@ class UsersContainer extends Component {
 
     componentDidMount() {
         this.props.setLoading(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, {
+            withCredentials: true
+        })
             .then(response => {
                 this.props.setLoading(false);
                 this.props.setUsers(response.data.items);
@@ -20,7 +22,9 @@ class UsersContainer extends Component {
     onChangeCurrentPage = (pageNumber) =>{
         this.props.setCurrentPage(pageNumber);
         this.props.setLoading(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`, {
+            withCredentials: true
+        })
             .then(response => {
                 this.props.setLoading(false);
                 this.props.setUsers(response.data.items)
