@@ -17,7 +17,13 @@ let Users = (props) => {
                 onChangeCurrentPage={props.onChangeCurrentPage} />
             <div>
                 {props.users.map(
-                    u => <User key={u.id} user={u} follow={props.follow} unfollow={props.unfollow} />)}
+                    u => <User key={u.id}
+                        user={u}
+                        follow={props.follow}
+                        unfollow={props.unfollow}
+                        isFollowingInProgress={props.isFollowingInProgress}
+                        setFollowingInProgress={props.setFollowingInProgress}
+                    />)}
             </div>
         </div>
     )

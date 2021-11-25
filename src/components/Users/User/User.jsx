@@ -19,22 +19,24 @@ const User = (props) => {
             <div>
                 {
                     user.followed
-                        ? <button onClick={() => {
-                            
+                        ? <button disabled={props.isFollowingInProgress} onClick={() => {
+                            props.setFollowingInProgress(true);
                             followAPI.unFollowing(user.id)
                                 .then(data => {
                                     if(data.resultCode == 0) {
                                         props.unfollow(user.id);
                                     }
+                                    props.setFollowingInProgress(false);
                                 });    
                         }}>UNFOLLOW</button>
-                        : <button onClick={() => {
-
+                        : <button disabled={props.isFollowingInProgress} onClick={() => {
+                            props.setFollowingInProgress(true);
                             followAPI.following(user.id)
                                 .then(data => {
                                     if(data.resultCode == 0) {
                                         props.follow(user.id);
                                     }
+                                    props.setFollowingInProgress(false);
                                 });
                         }}>FOLLOW</button>
                 }

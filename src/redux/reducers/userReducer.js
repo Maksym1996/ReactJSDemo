@@ -1,4 +1,4 @@
-import { FOLLOW, UNFOLLOW, SET_USERS, SET_CURRENT_PAGE, SET_USERS_TOTAL_COUNT, SET_LOADING } from "../actions/actionConst";
+import { FOLLOW, UNFOLLOW, SET_USERS, SET_CURRENT_PAGE, SET_USERS_TOTAL_COUNT, SET_LOADING, SET_FOLLOWING_IN_PROGRESS } from "../actions/actionConst";
 
 let initialState = {
 /*     usersData: [
@@ -15,7 +15,8 @@ let initialState = {
     pageSize: 10,
     totalUsers: 0,
     currentPage: 1,
-    isLoading: false
+    isLoading: false,
+    isFollowingInProgress: false
 };
 
 const userReduser = (state = initialState, action) => {
@@ -56,9 +57,14 @@ const userReduser = (state = initialState, action) => {
                 totalUsers: action.totalUsersCount
             }
         case SET_LOADING:
-            return{
+            return {
                 ...state,
                 isLoading: action.isLoading
+            }
+        case SET_FOLLOWING_IN_PROGRESS:
+            return {
+                ...state,
+                isFollowingInProgress: action.isFollowingInProgress
             }
         default:
             return state;

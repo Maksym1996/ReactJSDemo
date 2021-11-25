@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import { follow, setCurrentPage, setLoading, setTotalUsersCount, setUsers, unfollow } from '../../redux/actions/userAction';
+import { follow, setCurrentPage, setLoading, setTotalUsersCount, setUsers, unfollow, setFollowingInProgress } from '../../redux/actions/userAction';
 import Users from './Users';
 import usersAPI from '../../api/usersAPI';
 
@@ -36,7 +36,9 @@ class UsersContainer extends Component {
                     unfollow={this.props.unfollow}
                     users={this.props.users}
                     isLoading={this.props.isLoading}
-                    onChangeCurrentPage={this.onChangeCurrentPage}/>
+                    onChangeCurrentPage={this.onChangeCurrentPage}
+                    isFollowingInProgress={this.props.isFollowingInProgress}
+                    setFollowingInProgress={this.props.setFollowingInProgress}/>
         
     }
 }
@@ -47,12 +49,13 @@ let mapStateToProps = (state) => {
         currentPage: state.usersComponent.currentPage,
         pageSize: state.usersComponent.pageSize,
         totalUsers: state.usersComponent.totalUsers,
-        isLoading: state.usersComponent.isLoading
+        isLoading: state.usersComponent.isLoading,
+        isFollowingInProgress: state.usersComponent.isFollowingInProgress
     }
 }
 
 let mapDispatchToProps = {
-    follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount, setLoading
+    follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount, setLoading, setFollowingInProgress
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);

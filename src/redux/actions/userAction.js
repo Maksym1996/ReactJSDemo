@@ -1,9 +1,9 @@
-import { FOLLOW, UNFOLLOW, SET_USERS, SET_CURRENT_PAGE, SET_USERS_TOTAL_COUNT, SET_LOADING } from "./actionConst";
+import { FOLLOW, UNFOLLOW, SET_USERS, SET_CURRENT_PAGE, SET_USERS_TOTAL_COUNT, SET_LOADING, SET_FOLLOWING_IN_PROGRESS } from "./actionConst";
 
 export const follow = (userId) => {
     return {
         type: FOLLOW,
-        userId: userId
+        userId
     }
 }
 
@@ -28,10 +28,10 @@ export const setCurrentPage = (currentPage) => {
     }
 }
 
-export const setTotalUsersCount = (usersCount) => {
+export const setTotalUsersCount = (totalUsersCount) => {
     return {
         type: SET_USERS_TOTAL_COUNT,
-        totalUsersCount: usersCount
+        totalUsersCount
     }
 }
 
@@ -39,5 +39,12 @@ export const setLoading = (isLoading) => {
     return {
         type: SET_LOADING,
         isLoading
+    }
+}
+
+export const setFollowingInProgress = (isFollowingInProgress) => {
+    return {
+        type : SET_FOLLOWING_IN_PROGRESS,
+        isFollowingInProgress
     }
 }
