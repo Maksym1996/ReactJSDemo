@@ -24,7 +24,6 @@ const HeaderReduxContainer = (props) => {
 }
 
 let mapStateToProps = (state) => {
-    debugger;
     return {
         userId: state.auth.userId,
         email: state.auth.email,
