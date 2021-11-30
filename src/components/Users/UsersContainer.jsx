@@ -1,31 +1,16 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import { follow, setCurrentPage, setLoading, setTotalUsersCount, setUsers, unfollow, setFollowingInProgress } from '../../redux/actions/userAction';
+import { follow, getUsers, unfollow, setFollowingInProgress } from '../../redux/actions/userAction';
 import Users from './Users';
-import usersAPI from '../../api/usersAPI';
 
 class UsersContainer extends Component {
 
     componentDidMount() {
-        this.props.setLoading(true);
-        usersAPI.getUsers(this.props.currentPage, this.props.pageSize)
-            .then(data => {
-                this.props.setLoading(false);
-                this.props.setUsers(data.items);
-                this.props.setTotalUsersCount(data.totalCount);
-                
-            })
+       this.props.getUsers(this.props.currentPage, this.props.pageSize);
     }
 
     onChangeCurrentPage = (pageNumber) =>{
-        this.props.setCurrentPage(pageNumber);
-        this.props.setLoading(true);
-        usersAPI.getUsers(this.props.currentPage, this.props.pageSize)
-            .then(data => {
-                this.props.setLoading(false);
-                this.props.setUsers(data.items)
-              
-            })
+        this.props.getUsers(pageNumber, this.props.pageSize);
     }
 
     render() {
@@ -55,7 +40,7 @@ let mapStateToProps = (state) => {
 }
 
 let mapDispatchToProps = {
-    follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount, setLoading, setFollowingInProgress
+    follow, unfollow, getUsers, setFollowingInProgress
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);
