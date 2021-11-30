@@ -1,19 +1,12 @@
 import React, { useEffect } from "react";
 import Header from "./Header";
-import { setUserData } from '../../redux/actions/authActions';
+import { getCurrentUser } from '../../redux/actions/authActions';
 import { connect } from "react-redux";
-import authAPI from "../../api/authAPI";
 
 const HeaderReduxContainer = (props) => {
 
     useEffect(() => {
-        authAPI.getCurrentUser()
-            .then(data => {
-                if (data.resultCode === 0) {
-                    let { id, login, email } = data.data;
-                    props.setUserData(id, email, login)
-                }
-            })
+        props.getCurrentUser();
     })
     return (
         <Header login={props.login}
@@ -31,7 +24,7 @@ let mapStateToProps = (state) => {
 }
 
 let mapDispatchToProps = {
-    setUserData
+    getCurrentUser
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(HeaderReduxContainer)
