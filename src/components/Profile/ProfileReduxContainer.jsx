@@ -1,10 +1,9 @@
-import { onAddPost, onUpdatePostInput, setDisplayingProfile } from '../../redux/actions/profileActions';
+import { onAddPost, onUpdatePostInput, getProfile } from '../../redux/actions/profileActions';
 import Profile from './Profile';
 import { connect } from 'react-redux';
 import React, { useEffect } from 'react';
 import Preload from '../Users/Preload/Preload';
 import { useParams } from 'react-router-dom';
-import profileAPI from '../../api/profileAPI';
 
 const ProfileReduxContainer = (props) => {
 
@@ -15,8 +14,7 @@ const ProfileReduxContainer = (props) => {
     }
 
     useEffect( () => {
-        profileAPI.getProfile(userId)
-            .then(data => props.setDisplayingProfile(data))
+        props.getProfile(userId);
     })
 
     if (!props.profile) {
@@ -37,7 +35,7 @@ let mapStateToProps = (state) => {
 }
 
 let mapDispatchToProps = {
-    onAddPost, onUpdatePostInput, setDisplayingProfile
+    onAddPost, onUpdatePostInput, getProfile
 }
 
 

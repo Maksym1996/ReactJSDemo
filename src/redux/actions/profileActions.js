@@ -1,4 +1,12 @@
+import profileAPI from "../../api/profileAPI";
 import { ADD_POST, SET_DISPLAYING_PROFILE, UPDATE_POST_MESSAGE } from "./actionConst";
+
+export const getProfile = (userId) => {
+    return dispatch => {
+        profileAPI.getProfile(userId)
+            .then(data => dispatch(setDisplayingProfile(data)))
+    }
+}
 
 export const onAddPost = () => {
     return {
@@ -13,7 +21,7 @@ export const onUpdatePostInput = (message) => {
     }
 };
 
-export const setDisplayingProfile = (profile) => {
+const setDisplayingProfile = (profile) => {
     return {
         type: SET_DISPLAYING_PROFILE,
         profile
