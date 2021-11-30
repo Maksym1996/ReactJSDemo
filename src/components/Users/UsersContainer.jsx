@@ -1,30 +1,29 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { follow, getUsers, unfollow, setFollowingInProgress } from '../../redux/actions/userAction';
+import { followSuccess, getUsers, unfollowSuccess } from '../../redux/actions/userAction';
 import Users from './Users';
 
 class UsersContainer extends Component {
 
     componentDidMount() {
-       this.props.getUsers(this.props.currentPage, this.props.pageSize);
+        this.props.getUsers(this.props.currentPage, this.props.pageSize);
     }
 
-    onChangeCurrentPage = (pageNumber) =>{
+    onChangeCurrentPage = (pageNumber) => {
         this.props.getUsers(pageNumber, this.props.pageSize);
     }
 
     render() {
-        return  <Users totalUsers={this.props.totalUsers}
-                    pageSize={this.props.pageSize}
-                    currentPage={this.props.currentPage}
-                    follow={this.props.follow}
-                    unfollow={this.props.unfollow}
-                    users={this.props.users}
-                    isLoading={this.props.isLoading}
-                    onChangeCurrentPage={this.onChangeCurrentPage}
-                    followingInProgress={this.props.followingInProgress}
-                    setFollowingInProgress={this.props.setFollowingInProgress}/>
-        
+        return <Users totalUsers={this.props.totalUsers}
+            pageSize={this.props.pageSize}
+            currentPage={this.props.currentPage}
+            follow={this.props.followSuccess}
+            unfollow={this.props.unfollowSuccess}
+            users={this.props.users}
+            isLoading={this.props.isLoading}
+            onChangeCurrentPage={this.onChangeCurrentPage}
+            followingInProgress={this.props.followingInProgress} />
+
     }
 }
 
@@ -40,7 +39,7 @@ let mapStateToProps = (state) => {
 }
 
 let mapDispatchToProps = {
-    follow, unfollow, getUsers, setFollowingInProgress
+    followSuccess, unfollowSuccess, getUsers
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);
