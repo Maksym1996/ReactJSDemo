@@ -1,6 +1,7 @@
 import s from './ProfileInfo.module.css';
 import lookingForAJobPhoto from '../../../assets/images/lookingForAJob.png';
 import noLookingForAJobPhoto from '../../../assets/images/noLookingForAJob.png';
+import ProfileStatus from './ProfileStatus/ProfileStatus';
 
 const ProfileInfo = (props) => {
 
@@ -25,9 +26,6 @@ const ProfileInfo = (props) => {
 
     return (
         <div>
-            <div className={s.top}>
-                <img src='https://p.bigstockphoto.com/GeFvQkBbSLaMdpKXF1Zv_bigstock-Aerial-View-Of-Blue-Lakes-And--227291596.jpg' alt='Avatar' />
-            </div>
             <div className={s.descriptionBlock}>
                 <div>
                     <img src={props.profile.photos.large} alt='Avatar' />
@@ -41,6 +39,7 @@ const ProfileInfo = (props) => {
                 {props.profile.lookingForAJob ? lookingJob() : noLookingAJob()}
 
             </div>
+            <ProfileStatus status={'Sho takoe'} />
         </div>
     );
 }
