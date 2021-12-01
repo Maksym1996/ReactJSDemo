@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Pagination from "./Pagination/Pagination";
 import Preload from "./Preload/Preload";
 import User from "./User/User";
@@ -9,6 +9,7 @@ let Users = (props) => {
     if (props.isLoading) {
         return <Preload />
     }
+
     return (
         <div>
             <Pagination totalUsers={props.totalUsers}
