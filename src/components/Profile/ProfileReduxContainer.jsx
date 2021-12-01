@@ -3,7 +3,9 @@ import Profile from './Profile';
 import { connect } from 'react-redux';
 import React, { useEffect } from 'react';
 import Preload from '../Users/Preload/Preload';
-import { useParams } from 'react-router-dom';
+import { useParams, Navigate } from 'react-router-dom';
+import withAuthRedirect from '../../hoc/withAuthRedirect';
+import { compose } from 'redux';
 
 const ProfileReduxContainer = (props) => {
 
@@ -15,8 +17,7 @@ const ProfileReduxContainer = (props) => {
 
     useEffect( () => {
         props.getProfile(userId);
-    })
-
+    }, userId)
     if (!props.profile) {
         return <Preload />
     }
@@ -30,7 +31,7 @@ let mapStateToProps = (state) => {
     return {
         postData: profileState.postData,
         currentMessage: profileState.currentMessage,
-        profile: profileState.displayingProfile
+        profile: profileState.displayingProfile,
     }
 }
 
@@ -38,5 +39,7 @@ let mapDispatchToProps = {
     onAddPost, onUpdatePostInput, getProfile
 }
 
-
-export default connect(mapStateToProps, mapDispatchToProps)(ProfileReduxContainer);
+export default compose(
+    connect(mapStateToProps, mapDispatchToProps),
+    withAuthRedirect
+)(ProfileReduxContainer);

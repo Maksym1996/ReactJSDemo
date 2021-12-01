@@ -1,19 +1,27 @@
 import { connect } from 'react-redux';
+import { Navigate } from 'react-router-dom';
+import { compose } from 'redux';
+import withAuthRedirect from '../../hoc/withAuthRedirect';
 import { onAddMessage, onUpdateMessage } from "../../redux/actions/dialogActions";
 import Dialogs from "./Dialogs";
+
+const DialogsReduxContainer = (props) => {
+    return <Dialogs {...props} />;
+}
 
 let mapStateToProps = (state) => {
     let dialogState = state.dialogComponent;
     return {
         usersData: dialogState.dialogData,
         messagesData: dialogState.messageData,
-        currentMessage: dialogState.currentMessage
+        currentMessage: dialogState.currentMessage,
     }
 }
-
 let mapDispatchToProps = {
     onAddMessage, onUpdateMessage
 }
-const DialogsReduxContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
 
-export default DialogsReduxContainer;
+export default compose(
+    connect(mapStateToProps, mapDispatchToProps),
+    withAuthRedirect
+)(DialogsReduxContainer)
