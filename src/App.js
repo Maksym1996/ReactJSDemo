@@ -10,6 +10,7 @@ import ProfileReduxContainer from './components/Profile/ProfileReduxContainer';
 import UsersContainer from './components/Users/UsersContainer';
 import Dialogs from './components/Dialogs/Dialogs';
 import HeaderReduxContainer from './components/Header/HeaderReduxContainer';
+import Login from './components/Login/Login';
 
 const App = (props) => {
   return (
@@ -31,6 +32,7 @@ const App = (props) => {
           <Route path='/music' element={<Music />} />
           <Route path='/settings' element={<Settings />} />
           <Route path='/users' element={<UsersContainer />} />
+          <Route path='/login' element={<Login />} />
         </Routes>
       </div>
     </div >
