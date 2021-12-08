@@ -37,9 +37,10 @@ const ProfileInfo = (props) => {
                     About me: {props.profile.aboutMe}
                 </div>
                 {props.profile.lookingForAJob ? lookingJob() : noLookingAJob()}
-
+                <ProfileStatus
+                    status={props.status}
+                    onUpdateStatus={props.onUpdateStatus} />
             </div>
-            <ProfileStatus status={'Sho takoe'} />
         </div>
     );
 }

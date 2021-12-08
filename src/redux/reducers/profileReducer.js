@@ -1,4 +1,4 @@
-import { ADD_POST, SET_DISPLAYING_PROFILE, UPDATE_POST_MESSAGE } from "../actions/actionConst";
+import { ADD_POST, SET_DISPLAYING_PROFILE, SET_STATUS, UPDATE_POST_MESSAGE } from "../actions/actionConst";
 
 let initialState = {
     postData: [
@@ -6,7 +6,8 @@ let initialState = {
         { id: 2, message: 'Bye bye all', likes: 20 }
     ],
     currentMessage: '',
-    displayingProfile: null
+    displayingProfile: null,
+    status: ''
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -17,6 +18,8 @@ const profileReducer = (state = initialState, action) => {
             return updatePostText(state, action.message);
         case SET_DISPLAYING_PROFILE:
             return setDispalyingProfile(state, action.profile);
+        case SET_STATUS:
+            return setStatus(state, action.userStatus)
         default:
             return state;
     }
@@ -58,3 +61,10 @@ const setDispalyingProfile = (state, profile) => {
         displayingProfile: profile
     }
 }
+
+const setStatus = (state, userStatus) => {
+    return {
+        ...state,
+        status: userStatus
+    }
+} 

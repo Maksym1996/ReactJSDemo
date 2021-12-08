@@ -1,5 +1,5 @@
 import profileAPI from "../../api/profileAPI";
-import { ADD_POST, SET_DISPLAYING_PROFILE, UPDATE_POST_MESSAGE } from "./actionConst";
+import { ADD_POST, SET_DISPLAYING_PROFILE, SET_STATUS, UPDATE_POST_MESSAGE } from "./actionConst";
 
 export const getProfile = (userId) => {
     return dispatch => {
@@ -20,6 +20,31 @@ export const onUpdatePostInput = (message) => {
         message
     }
 };
+
+export const updateStatus = (newStatus) => {
+    return dispatch => {
+        profileAPI.updateStatus(newStatus)
+            .then(data => {
+                if (data.resultCode === 0) {
+                    dispatch(setStatus(newStatus))
+                }
+            });
+    }
+}
+
+export const getStatus = (userId) => {
+    return dispatch => {
+        profileAPI.getStatus(userId)
+            .then(data => dispatch(setStatus(data)))
+    }
+}
+
+const setStatus = (userStatus) => {
+    return {
+        type: SET_STATUS,
+        userStatus
+    }
+}
 
 const setDisplayingProfile = (profile) => {
     return {

@@ -24,6 +24,7 @@ const User = (props) => {
                             onClick={() => { props.follow(user.id) }}>FOLLOW</button>
                 }
             </div>
+            <div>{user.status}</div>
             <div>
                 {'user.location.city'}
             </div>

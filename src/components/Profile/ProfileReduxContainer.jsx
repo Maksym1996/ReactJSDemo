@@ -1,9 +1,9 @@
-import { onAddPost, onUpdatePostInput, getProfile } from '../../redux/actions/profileActions';
+import { onAddPost, onUpdatePostInput, getProfile, getStatus, updateStatus } from '../../redux/actions/profileActions';
 import Profile from './Profile';
 import { connect } from 'react-redux';
 import React, { useEffect } from 'react';
 import Preload from '../Users/Preload/Preload';
-import { useParams, Navigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import withAuthRedirect from '../../hoc/withAuthRedirect';
 import { compose } from 'redux';
 
@@ -11,18 +11,27 @@ const ProfileReduxContainer = (props) => {
 
     let { userId } = useParams();
 
-    if(!userId) {
-        userId = 2;
+    if (!userId) {
+        userId = 20958;
     }
 
-    useEffect( () => {
+    useEffect(() => {
         props.getProfile(userId);
-    }, userId)
+        props.getStatus(userId);
+    }, userId);
+
     if (!props.profile) {
         return <Preload />
     }
     return (
-        <Profile {...props} />
+        <Profile
+            profile={props.profile}
+            status={props.status}
+            postData={props.postData}
+            currentMessage={props.currentMessage}
+            onUpdateStatus={props.updateStatus}
+            onAddPost={props.onAddPost}
+            onUpdatePostInput={props.onUpdatePostInput} />
     )
 }
 
@@ -32,14 +41,15 @@ let mapStateToProps = (state) => {
         postData: profileState.postData,
         currentMessage: profileState.currentMessage,
         profile: profileState.displayingProfile,
+        status: profileState.status
     }
 }
 
 let mapDispatchToProps = {
-    onAddPost, onUpdatePostInput, getProfile
+    onAddPost, onUpdatePostInput, getProfile, getStatus, updateStatus
 }
 
 export default compose(
-    connect(mapStateToProps, mapDispatchToProps),
-    withAuthRedirect
+    withAuthRedirect,
+    connect(mapStateToProps, mapDispatchToProps)
 )(ProfileReduxContainer);
