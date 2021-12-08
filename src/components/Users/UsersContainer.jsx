@@ -14,7 +14,8 @@ class UsersContainer extends Component {
     }
 
     render() {
-        return <Users totalUsers={this.props.totalUsers}
+        return <Users 
+            totalUsers={this.props.totalUsers}
             pageSize={this.props.pageSize}
             currentPage={this.props.currentPage}
             follow={this.props.followSuccess}
