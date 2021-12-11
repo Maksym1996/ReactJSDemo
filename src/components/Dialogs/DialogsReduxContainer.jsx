@@ -1,5 +1,4 @@
 import { connect } from 'react-redux';
-import { Navigate } from 'react-router-dom';
 import { compose } from 'redux';
 import withAuthRedirect from '../../hoc/withAuthRedirect';
 import { onAddMessage, onUpdateMessage } from "../../redux/actions/dialogActions";
@@ -22,6 +21,6 @@ let mapDispatchToProps = {
 }
 
 export default compose(
-    connect(mapStateToProps, mapDispatchToProps),
-    withAuthRedirect
+    withAuthRedirect,
+    connect(mapStateToProps, mapDispatchToProps)
 )(DialogsReduxContainer)
