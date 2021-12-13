@@ -9,7 +9,8 @@ const HeaderReduxContainer = (props) => {
         props.getCurrentUser();
     })
     return (
-        <Header login={props.login}
+        <Header 
+            login={props.login}
             isAuth={props.isAuth} />
     )
 }
