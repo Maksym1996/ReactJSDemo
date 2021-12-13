@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Navigate } from "react-router-dom";
+import { connect } from "react-redux";
 import { reduxForm, Field } from 'redux-form';
-import authAPI from "../../api/authAPI";
 import securityAPI from "../../api/securityAPI";
+import { loginUser } from "../../redux/actions/authActions";
 
 const LoginForm = (props) => {
     const [captcha, setCaptcha] = useState();
@@ -11,17 +11,25 @@ const LoginForm = (props) => {
         props.captcha.then(c => {
             setCaptcha(c);
         })
-    },[])
+    }, [])
+
+    let messages
+
+    if (props.messages) {
+        messages = props.messages.map(
+            el => <p>{el}</p>
+        );
+    }
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
-                <Field placeholder='login' name='email' component='input'/>
+                <Field placeholder='login' name='email' component='input' />
             </div>
             <div>
                 <Field placeholder='password' name='password' component='input' />
             </div>
             <div>
-                <Field type='checkbox' name='rememberMe' component='input'/> remember me
+                <Field type='checkbox' name='rememberMe' component='input' /> remember me
             </div>
             <div>
                 <img src={captcha} alt='captcha' />
@@ -30,28 +38,39 @@ const LoginForm = (props) => {
                 <Field name='captcha' component='input' />
             </div>
             <div>
+                {messages}
+            </div>
+            <div>
                 <button>Login</button>
             </div>
         </form>
     )
 }
 
-const LoginReduxForm = reduxForm({form: 'login'})(LoginForm);
+const LoginReduxForm = reduxForm({ form: 'login' })(LoginForm);
 
 const Login = (props) => {
     const onSubmit = (formData) => {
-        authAPI.loginToSystem(formData).then(data => {
-            console.log(data)
-        });
-    }
+        props.loginUser(formData);
+    };
 
-   const captcha = securityAPI.getCaptchaUrl();
-    
+    const captcha = securityAPI.getCaptchaUrl();
+
     return (
         <div>
             <hi>LOGIN</hi>
-            <LoginReduxForm onSubmit={onSubmit} captcha={captcha}/>
+            <LoginReduxForm onSubmit={onSubmit} captcha={captcha} messages={props.messages} />
         </div>
     )
 }
-export default Login;
+
+let mapDispatchToProps = {
+    loginUser
+}
+
+let mapStateToProps = (state) => {
+    return {
+        messages: state.auth.messages
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Login)

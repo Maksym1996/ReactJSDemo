@@ -1,5 +1,5 @@
 import authAPI from "../../api/authAPI";
-import { SET_USER_DATA } from "./actionConst"
+import { SET_ERROR_MESSAGES, SET_USER_DATA } from "./actionConst"
 
 export const getCurrentUser = () => {
     return dispatch => {
@@ -10,6 +10,24 @@ export const getCurrentUser = () => {
                     dispatch(setUserData(id, email, login));
                 }
             })
+    }
+}
+
+export const loginUser = (formData) => {
+    return dispatch => {
+        authAPI.loginToSystem(formData)
+            .then(data => {
+                data.resultCode === 0 
+                    ? dispatch(setUserData(data.data.userId))
+                    : dispatch(setErrorMessages(data.messages));
+            })
+    }
+}
+
+const setErrorMessages = (messages) => {
+    return {
+        type: SET_ERROR_MESSAGES,
+        messages
     }
 }
 
