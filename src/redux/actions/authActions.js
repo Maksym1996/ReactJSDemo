@@ -1,5 +1,5 @@
 import authAPI from "../../api/authAPI";
-import { SET_ERROR_MESSAGES, SET_USER_DATA } from "./actionConst"
+import { SET_USER_DATA } from "./actionConst"
 
 export const getCurrentUser = () => {
     return dispatch => {
@@ -19,13 +19,6 @@ export const loginUser = (formData) => {
             .then(data => {
                  dispatch(setUserData(data))
             })
-    }
-}
-
-const setErrorMessages = (messages) => {
-    return {
-        type: SET_ERROR_MESSAGES,
-        messages
     }
 }
 
