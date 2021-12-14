@@ -7,7 +7,7 @@ export const getCurrentUser = () => {
             .then(data => {
                 if (data.resultCode === 0) {
                     let { id, login, email } = data.data;
-                    dispatch(setUserData(id, email, login));
+                    dispatch(setUserData( { id, email, login }));
                 }
             })
     }
@@ -17,9 +17,7 @@ export const loginUser = (formData) => {
     return dispatch => {
         authAPI.loginToSystem(formData)
             .then(data => {
-                data.resultCode === 0 
-                    ? dispatch(setUserData(data.data.userId))
-                    : dispatch(setErrorMessages(data.messages));
+                 dispatch(setUserData(data))
             })
     }
 }
@@ -31,11 +29,9 @@ const setErrorMessages = (messages) => {
     }
 }
 
-const setUserData = (userId, email, login) => {
+const setUserData = (data) => {
     return {
         type: SET_USER_DATA,
-        data: {
-            userId, email, login
-        }
+        data
     }
 }
