@@ -10,9 +10,6 @@ const getCaptchaUrl = () => {
         .then(response => {
             return response.data;
         })
-        .then(data => {
-            return data.url
-        })
 }
 
 export default {
