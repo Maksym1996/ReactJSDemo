@@ -2,6 +2,7 @@ import React from "react";
 import s from './Dialogs.module.css';
 import DialogItem from "./DialogItem/DialogItem";
 import Message from './Message/Message'
+import AddMessageForm from './AddMessageForm/AddMessageForm'
 import { useParams } from "react-router-dom";
 
 const Dialogs = (props) => {
@@ -15,15 +16,9 @@ const Dialogs = (props) => {
     let messageElements = props.messagesData
         .map(el => <Message key={el.id} text={el.text} />)
 
-    let newMessageElement = React.createRef();
-
-    let addMessage = () => {
-        props.onAddMessage();
-    }
-
-    let updateMessage = (elem) => {
-        let text = elem.currentTarget.value;
-        props.onUpdateMessage(text);
+    const onSubmit = (formData) => {
+        console.log(formData)
+        props.onAddMessage(formData.newMessageBody);
     }
 
     return (
@@ -34,10 +29,7 @@ const Dialogs = (props) => {
             <div className={s.messages}>
                 {messageElements}
             </div>
-            <div>
-                <textarea ref={newMessageElement} onChange={updateMessage} value={props.currentMessage} placeholder='Enter new message'></textarea>
-                <button onClick={addMessage}>Add message</button>
-            </div>
+            <AddMessageForm onSubmit={onSubmit}/>
         </div>
     )
 }

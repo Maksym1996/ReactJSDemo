@@ -1,4 +1,4 @@
-import { ADD_DIALOG_MESSAGE, UPDATE_DIALOG_MESSAGE } from "../actions/actionConst";
+import { ADD_DIALOG_MESSAGE } from "../actions/actionConst";
 
 let initialState = {
     dialogData: [
@@ -11,44 +11,28 @@ let initialState = {
         { id: 1, text: 'Hi, everyone!' },
         { id: 2, text: 'What\'s wrong?' },
         { id: 3, text: 'All ok!' }
-    ],
-    currentMessage: ''
+    ]
 }
 
 const dialogReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_DIALOG_MESSAGE:
-            return addDialogMessage(state);
-        case UPDATE_DIALOG_MESSAGE:
-            return updateDialogMessage(state, action.message);
+            return addDialogMessage(state, action.message);
         default:
             return state;
     }
 };
 
-export default dialogReducer;
-
-const addDialogMessage = (state) => {
-    let text = state.currentMessage;
-    if (!text) {
-        alert('Please enter message');
-        return state;
-    }
+const addDialogMessage = (state, message) => {
     return {
         ...state,
         messageData: [
             ...state.messageData,
             {
                 id: state.messageData.length + 1,
-                text: state.currentMessage
+                text: message
             }],
-        currentMessage: ''
     }
 };
 
-const updateDialogMessage = (state, message) => {
-    return {
-        ...state,
-        currentMessage: message
-    }
-};
+export default dialogReducer;
