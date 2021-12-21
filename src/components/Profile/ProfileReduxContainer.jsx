@@ -1,4 +1,4 @@
-import { onAddPost, onUpdatePostInput, getProfile, getStatus, updateStatus } from '../../redux/actions/profileActions';
+import { onAddPost, getProfile, getStatus, updateStatus } from '../../redux/actions/profileActions';
 import Profile from './Profile';
 import { connect } from 'react-redux';
 import React, { useEffect } from 'react';
@@ -30,8 +30,7 @@ const ProfileReduxContainer = (props) => {
             postData={props.postData}
             currentMessage={props.currentMessage}
             onUpdateStatus={props.updateStatus}
-            onAddPost={props.onAddPost}
-            onUpdatePostInput={props.onUpdatePostInput} />
+            onAddPost={props.onAddPost} />
     )
 }
 
@@ -39,14 +38,13 @@ let mapStateToProps = (state) => {
     let profileState = state.profileComponent;
     return {
         postData: profileState.postData,
-        currentMessage: profileState.currentMessage,
         profile: profileState.displayingProfile,
         status: profileState.status
     }
 }
 
 let mapDispatchToProps = {
-    onAddPost, onUpdatePostInput, getProfile, getStatus, updateStatus
+    onAddPost, getProfile, getStatus, updateStatus
 }
 
 export default compose(

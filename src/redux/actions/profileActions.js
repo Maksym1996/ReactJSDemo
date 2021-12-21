@@ -8,16 +8,10 @@ export const getProfile = (userId) => {
     }
 }
 
-export const onAddPost = () => {
+export const onAddPost = (postMessage) => {
     return {
-        type: ADD_POST
-    }
-};
-
-export const onUpdatePostInput = (message) => {
-    return {
-        type: UPDATE_POST_MESSAGE,
-        message
+        type: ADD_POST,
+        postMessage
     }
 };
 
