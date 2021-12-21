@@ -13,7 +13,6 @@ let mapStateToProps = (state) => {
     return {
         usersData: dialogState.dialogData,
         messagesData: dialogState.messageData,
-        currentMessage: dialogState.currentMessage,
     }
 }
 let mapDispatchToProps = {
