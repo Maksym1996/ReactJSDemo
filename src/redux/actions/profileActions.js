@@ -1,5 +1,5 @@
 import profileAPI from "../../api/profileAPI";
-import { ADD_POST, SET_DISPLAYING_PROFILE, SET_STATUS, UPDATE_POST_MESSAGE } from "./actionConst";
+import { ADD_POST, SET_DISPLAYING_PROFILE, SET_STATUS } from "./actionConst";
 
 export const getProfile = (userId) => {
     return dispatch => {
